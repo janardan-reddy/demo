@@ -1,0 +1,27 @@
+{
+	"name": "dataset_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sales",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkFileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().sinkFileName",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "slefstudy"
+			}
+		}
+	}
+}

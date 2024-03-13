@@ -1,0 +1,27 @@
+{
+	"name": "dataset_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sales",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourceFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().sourceFileName",
+					"type": "Expression"
+				},
+				"folderPath": "input",
+				"container": "slefstudy"
+			}
+		}
+	}
+}
