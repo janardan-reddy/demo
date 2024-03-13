@@ -1,0 +1,48 @@
+{
+	"name": "dataset_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sales",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input",
+				"container": "slefstudy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "movieId",
+				"type": "String"
+			},
+			{
+				"name": "title",
+				"type": "String"
+			},
+			{
+				"name": "genres",
+				"type": "String"
+			},
+			{
+				"name": "imdbId",
+				"type": "String"
+			},
+			{
+				"name": "tmdbId",
+				"type": "String"
+			},
+			{
+				"name": "avgRating",
+				"type": "String"
+			}
+		]
+	}
+}
