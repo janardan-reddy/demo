@@ -32,7 +32,8 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Iterate_metadata",
+				"description": "iterates over metadata array",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -64,6 +65,49 @@
 								"value": {
 									"value": "@item().name",
 									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "metadata_eachFile",
+							"type": "GetMetadata",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "dataset_eachFile",
+									"type": "DatasetReference",
+									"parameters": {
+										"sourceFileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"lastModified",
+									"itemName"
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
 								}
 							}
 						}
