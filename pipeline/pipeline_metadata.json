@@ -52,7 +52,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Set variable1",
+							"name": "fileName",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"policy": {
@@ -69,45 +69,31 @@
 							}
 						},
 						{
-							"name": "metadata_eachFile",
-							"type": "GetMetadata",
+							"name": "Execute_PipeLine_copy",
+							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
-									"activity": "Set variable1",
+									"activity": "fileName",
 									"dependencyConditions": [
 										"Succeeded"
 									]
 								}
 							],
 							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "dataset_eachFile",
-									"type": "DatasetReference",
-									"parameters": {
-										"sourceFileName": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
+								"pipeline": {
+									"referenceName": "pipeline_copy",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"sourceFileName": {
+										"value": "@variables('fileName')",
+										"type": "Expression"
 									}
-								},
-								"fieldList": [
-									"lastModified",
-									"itemName"
-								],
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
 								}
 							}
 						}
