@@ -1,0 +1,26 @@
+{
+	"name": "dataset_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sales",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "sales"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input",
+				"container": "slefstudy"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
